@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <pre id="result">Testing...</pre>
+  </body>
+  <script src="sjcl.min.js"></script>
+  <script src="password.js"></script>
+  <script>
+    (function() {
+      var out = document.getElementById('result');
+      var set = {};
+      var passwordLength = 10;
+      for (var i = 0; i < 100000; i++) {
+        var p = generatePassword(passwordLength);
+        if (p.length != passwordLength) {
+          out.innerHTML = 'FAIL: bad length ' + p.length + ' on #' + i; 
+          return;
+        }
+        if (set[p]) {
+          out.innerHTML = 'FAIL: collission after ' + i + ' passwords'; 
+          return;
+        }
+        set[p] = true;
+      }
+      out.innerHTML = 'SUCCESS';
+    })();
+  </script>
+</body>
+</html>
