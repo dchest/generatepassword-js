@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Password generator</title>
+    <script src="sjcl.min.js"></script>
+    <script src="password.js"></script>
+    <script>
+      function generate() {
+         var length = parseInt(document.getElementById('len').value, 10);
+         var password = generatePassword(length);
+         document.getElementById('pw').innerHTML += password + '<br>';
+      }
+    </script>
+  </head>
+  <body>
+    Length: <input id="len" value="10" size="3"></input><button onclick="generate()">Generate</button>
+    <pre id="pw"></pre>
+  </body>
