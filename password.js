@@ -6,6 +6,9 @@
 function generatePassword(length) {
 
   function getRandomBytes(length) {
+    // We use sjcl's generator with paranoia level = 0.
+    // It's safer to wait until PRNG is better seeded in older browsers,
+    // but this isn't yet implemented.
     var words = sjcl.random.randomWords(Math.ceil(length / 4), 0);
     var bytes = [];
     for (var i = 0; i < words.length; i++) {
